@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option csharp_namespace = "MiniAV.Grpc";
+
+package miniav.v1;
+
+service ScannerTransport {
+  rpc Connect(stream ScannerFrame) returns (stream ScannerFrame);
+}
+
+message ScannerFrame {
+  string protocol_version = 1;
+  string correlation_id = 2;
+  string scanner_id = 3;
+  string worker_version = 4;
+  string type = 5;
+  string timestamp = 6;
+  bool success = 7;
+  string error_code = 8;
+  map<string, string> metadata = 9;
+}
